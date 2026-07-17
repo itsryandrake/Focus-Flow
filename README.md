@@ -86,6 +86,7 @@ npm test
 - React 19
 - TypeScript
 - Vite
+- Tailwind CSS v4 (Ential Liquid Glass design system — see `design.md`)
 - YouTube IFrame API for audio playback
 - Vitest for testing
 

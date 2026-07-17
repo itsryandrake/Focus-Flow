@@ -417,7 +417,8 @@ const Player: React.FC<PlayerProps> = ({ mode, initialActivityId, initialVideoId
         <div className="flex items-center gap-2 md:gap-4">
           <button
             onClick={onBack}
-            className="btn-mechanical p-2 rounded-lg text-[var(--text-primary)] hover:opacity-80"
+            aria-label="Back"
+            className="btn-mechanical p-2 rounded-full text-[var(--text-primary)] hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F74603]/40"
           >
             <ArrowLeft className="w-5 h-5" />
           </button>
@@ -426,7 +427,7 @@ const Player: React.FC<PlayerProps> = ({ mode, initialActivityId, initialVideoId
           <div className="relative">
             <button
               onClick={() => setShowActivityMenu(!showActivityMenu)}
-              className="btn-mechanical flex items-center gap-1.5 md:gap-2 px-2 md:px-4 py-2 rounded-lg text-[var(--text-primary)]"
+              className="btn-mechanical flex items-center gap-1.5 md:gap-2 px-2 md:px-4 py-2 rounded-full text-[var(--text-primary)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F74603]/40"
             >
               {getActivityIcon(currentActivity.id)}
               <span className="font-medium text-xs md:text-sm max-w-[80px] md:max-w-none truncate">{currentActivity.name}</span>
@@ -435,7 +436,7 @@ const Player: React.FC<PlayerProps> = ({ mode, initialActivityId, initialVideoId
 
             {/* Dropdown Menu */}
             {showActivityMenu && (
-              <div className="absolute top-full left-0 mt-2 w-64 bg-[var(--bg-primary)] border border-[var(--border)] rounded-lg shadow-xl p-2 z-50 animate-fade-in">
+              <div className="absolute top-full left-0 mt-2 w-64 surface-panel rounded-2xl p-2 z-50 animate-fade-in">
                 <div className="px-3 py-2 text-xs font-medium text-[var(--text-primary)] opacity-60 uppercase tracking-wider">Activities</div>
                 {availableActivities.map(act => (
                   <button
@@ -469,28 +470,35 @@ const Player: React.FC<PlayerProps> = ({ mode, initialActivityId, initialVideoId
         <div className="flex items-center gap-1 md:gap-2">
            <button
              onClick={toggleTheme}
-             className="btn-mechanical p-2 rounded-lg text-[var(--text-primary)] hover:opacity-80"
-             title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+             title={theme === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode'}
+             aria-label={theme === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode'}
+             className="p-2 rounded-full text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-secondary)] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F74603]/40"
            >
-             {theme === 'dark' ? <Sun className="w-4 h-4 md:w-5 md:h-5" /> : <MoonIcon className="w-4 h-4 md:w-5 md:h-5" />}
+             {theme === 'light' ? <MoonIcon className="w-4 h-4" /> : <Sun className="w-4 h-4" />}
            </button>
            <button
              onClick={() => setIsProfileOpen(true)}
-             className="btn-mechanical p-2 rounded-lg text-[var(--text-primary)] hover:opacity-80"
+             aria-label="Open profile"
              title="Profile"
+             className="p-2 rounded-full text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-secondary)] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F74603]/40"
            >
-             <UserCircle className="w-4 h-4 md:w-5 md:h-5" />
+             <UserCircle className="w-4 h-4" />
            </button>
            <button
              onClick={() => setShowTimerSettings(true)}
-             className="btn-mechanical p-2 rounded-lg text-[var(--text-primary)] hover:opacity-80 relative"
+             aria-label="Timer settings"
              title="Timer Settings"
+             className="relative p-2 rounded-full text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-secondary)] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F74603]/40"
            >
-             <Settings className="w-4 h-4 md:w-5 md:h-5" />
+             <Settings className="w-4 h-4" />
              {quotesEnabled && <span className="absolute top-1 right-1 w-2 h-2 bg-[var(--accent)] rounded-full"></span>}
            </button>
-           <button className="btn-mechanical p-2 rounded-lg text-[var(--text-primary)] hover:opacity-80" title="Fullscreen">
-             <Maximize2 className="w-4 h-4 md:w-5 md:h-5" />
+           <button
+             aria-label="Fullscreen"
+             title="Fullscreen"
+             className="p-2 rounded-full text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-secondary)] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F74603]/40"
+           >
+             <Maximize2 className="w-4 h-4" />
            </button>
         </div>
       </div>
@@ -565,7 +573,7 @@ const Player: React.FC<PlayerProps> = ({ mode, initialActivityId, initialVideoId
       {/* Meditation Mood Selector Modal */}
       {showMoodSelector && currentActivity.id === 'meditate-guided' && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm animate-fade-in">
-          <div className="w-full max-w-lg bg-[var(--bg-primary)] rounded-lg border border-[var(--border)] p-8 shadow-xl mx-4">
+          <div className="w-full max-w-lg surface-panel rounded-3xl p-8 mx-4">
             <h2 className="text-2xl font-light text-[var(--text-primary)] mb-2 text-center">Choose Your Focus</h2>
             <p className="text-[var(--text-secondary)] text-center mb-6 text-sm">Select a theme for your guided meditation</p>
             
@@ -624,17 +632,20 @@ const Player: React.FC<PlayerProps> = ({ mode, initialActivityId, initialVideoId
               >
                 <SkipBack className="w-5 h-5" />
               </button>
-              <button 
-                onClick={togglePlay}
-                className={`w-14 h-14 rounded-full flex items-center justify-center border-2 ${
-                  isPlaying 
-                    ? 'btn-mechanical-active' 
-                    : 'btn-mechanical text-[var(--text-primary)]'
-                }`}
-                title={isPlaying ? 'Pause' : 'Play'}
-              >
-                {isPlaying ? <Pause className="w-6 h-6 fill-current" /> : <Play className="w-6 h-6 fill-current ml-0.5" />}
-              </button>
+              {/* Liquid-metal sheen ring is the one hero moment — only while playing */}
+              <div className={isPlaying ? 'liquid-metal' : ''}>
+                <button
+                  onClick={togglePlay}
+                  className={`w-14 h-14 rounded-full flex items-center justify-center ${
+                    isPlaying
+                      ? 'btn-mechanical-active'
+                      : 'btn-mechanical border-2 text-[var(--text-primary)]'
+                  }`}
+                  title={isPlaying ? 'Pause' : 'Play'}
+                >
+                  {isPlaying ? <Pause className="w-6 h-6 fill-current" /> : <Play className="w-6 h-6 fill-current ml-0.5" />}
+                </button>
+              </div>
               <button 
                 onClick={handleSkip} 
                 className="btn-mechanical text-[var(--text-primary)] hover:opacity-80 p-2 rounded-lg"

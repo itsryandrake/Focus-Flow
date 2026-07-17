@@ -1,0 +1,271 @@
+@import "tailwindcss";
+
+/* Dark mode via .dark class on <html> (matches ThemeContext) */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  /* Ential core palette — see design.md, no new hues */
+  --color-ink: #000000;
+  --color-paper: #ffffff;
+  --color-stone: #d9d9d9;
+  --color-ember: #f74603;
+  --color-signal: #dd0200;
+  --color-cherry: #55100d;
+  --color-fog: #f4f4f6;
+
+  --font-display: 'Funnel Display', sans-serif;
+  --font-sans: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --animate-blob: blob 10s infinite;
+  --animate-fade-in: fadeIn 0.5s ease-out;
+
+  @keyframes blob {
+    0% { transform: translate(0px, 0px) scale(1); }
+    33% { transform: translate(30px, -50px) scale(1.1); }
+    66% { transform: translate(-20px, 20px) scale(0.9); }
+    100% { transform: translate(0px, 0px) scale(1); }
+  }
+  @keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+}
+
+:root {
+  /* Ential Liquid Glass tokens */
+  --ink: #000000;
+  --paper: #ffffff;
+  --stone: #d9d9d9;
+  --ember: #f74603;
+  --signal: #dd0200;
+  --cherry: #55100d;
+  --fog: #f4f4f6;
+
+  --glass: rgba(255, 255, 255, 0.72);
+  --glass-border: rgba(0, 0, 0, 0.06);
+  --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  --glass-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.04),
+    0 8px 24px rgba(0, 0, 0, 0.06),
+    0 24px 64px rgba(0, 0, 0, 0.07);
+  --glass-shadow-hover:
+    0 2px 4px rgba(0, 0, 0, 0.05),
+    0 16px 40px rgba(0, 0, 0, 0.09),
+    0 40px 96px rgba(0, 0, 0, 0.1);
+
+  /* App theme mapping — light (fog) */
+  --bg-primary: var(--fog);
+  --bg-secondary: rgba(255, 255, 255, 0.72);
+  --surface-solid: #ffffff;
+  --text-primary: #000000;
+  --text-secondary: rgba(0, 0, 0, 0.6);
+  --accent: var(--ember);
+  --accent-hover: var(--cherry);
+  --border: rgba(0, 0, 0, 0.06);
+  --chrome: #b3b3b8;
+}
+
+.dark {
+  /* App theme mapping — dark (ink slab) */
+  --glass: rgba(255, 255, 255, 0.07);
+  --glass-border: rgba(255, 255, 255, 0.09);
+  --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  --glass-shadow:
+    0 24px 64px rgba(0, 0, 0, 0.4),
+    0 1px 2px rgba(0, 0, 0, 0.3);
+  --glass-shadow-hover:
+    0 32px 80px rgba(0, 0, 0, 0.5),
+    0 2px 4px rgba(0, 0, 0, 0.3);
+
+  /* canonical Ential dark canvas — identical across the four tools (never pure black) */
+  --bg-primary: #0a0a0b;
+  --bg-secondary: rgba(255, 255, 255, 0.045);
+  --surface-solid: #151517;
+  --text-primary: #ffffff;
+  --text-secondary: var(--stone);
+  --accent: var(--ember);
+  --accent-hover: #ff7a3d;
+  --border: rgba(255, 255, 255, 0.09);
+  --chrome: #5a5a5f;
+}
+
+body {
+  font-family: var(--font-sans);
+  letter-spacing: -0.01em;
+}
+
+h1, h2, h3, h4, .font-display {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+/* Timer/stat displays stay monospace (FocusMode extension) */
+.font-mono {
+  font-family: var(--font-mono);
+  letter-spacing: normal;
+}
+
+/* ---------------------------------------------------------------- */
+/* Materials                                                        */
+/* ---------------------------------------------------------------- */
+
+/* Ember tile — the shared Ential app mark (header logo) */
+.ember-tile {
+  background:
+    radial-gradient(circle at 30% 22%, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0) 42%),
+    linear-gradient(160deg, #ff9d5e 0%, #f74603 55%, #d63c05 100%);
+  box-shadow:
+    0 8px 20px rgba(247, 70, 3, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.glass {
+  background: var(--glass);
+  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(24px);
+  border: 1px solid var(--glass-border);
+  border-radius: 1.25rem;
+  box-shadow: var(--glass-shadow), var(--glass-highlight);
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.glass.lift:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--glass-shadow-hover), var(--glass-highlight);
+}
+
+/* Solid overlay surface — dropdowns, sheets and modals are NOT glass */
+.surface-panel {
+  background: var(--surface-solid);
+  border: 1px solid var(--border);
+  box-shadow: var(--glass-shadow);
+}
+
+/* Ambient blobs — ≤7% opacity, huge blur, behind everything */
+.ambient {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.ambient span {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.5;
+}
+
+/* ---------------------------------------------------------------- */
+/* Buttons — glass capsule system (kept class names)                */
+/* ---------------------------------------------------------------- */
+
+.btn-mechanical {
+  background: var(--bg-secondary);
+  -webkit-backdrop-filter: blur(12px) saturate(1.4);
+  backdrop-filter: blur(12px) saturate(1.4);
+  border: 1px solid var(--border);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), var(--glass-highlight);
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.2s ease;
+}
+.btn-mechanical:hover {
+  transform: translateY(-1px) scale(1.02);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08), var(--glass-highlight);
+}
+.btn-mechanical:active {
+  transform: scale(0.98);
+}
+.btn-mechanical-active {
+  background: var(--ember);
+  color: white;
+  border: 1px solid transparent;
+  box-shadow: 0 8px 28px rgba(247, 70, 3, 0.35);
+}
+.btn-mechanical-active:hover {
+  background: var(--accent-hover);
+}
+
+/* ---------------------------------------------------------------- */
+/* Liquid metal — two sanctioned uses in this app: the play-button  */
+/* ring during a session, and the shared Ential footer capsule      */
+/* ---------------------------------------------------------------- */
+
+@property --lm-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+.liquid-metal {
+  position: relative;
+  border-radius: 9999px;
+  padding: 2px;
+  background: conic-gradient(from var(--lm-angle),
+    #232326 0%, #d9d9d9 10%, #5a5a5f 20%, #f74603 33%, #8a3015 42%,
+    #232326 52%, #cfcfd4 66%, #45454a 78%, #f74603 90%, #232326 100%);
+  animation: lm-spin 7s linear infinite;
+  box-shadow: 0 0 24px rgba(247, 70, 3, 0.18), 0 0 60px rgba(255, 255, 255, 0.05);
+}
+@keyframes lm-spin {
+  to { --lm-angle: 360deg; }
+}
+
+/* Molten ember text gradient — hero headlines only */
+.ember-gradient {
+  background: linear-gradient(180deg, #ff9d5e 0%, #f74603 58%, #d63c05 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ---------------------------------------------------------------- */
+/* Focus — ember focus-visible ring everywhere, never the browser   */
+/* default blue ring                                                 */
+/* ---------------------------------------------------------------- */
+
+:where(button, a, input, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid rgba(247, 70, 3, 0.4);
+  outline-offset: 1px;
+}
+
+/* ---------------------------------------------------------------- */
+/* Chrome                                                            */
+/* ---------------------------------------------------------------- */
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+  background: transparent;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--chrome);
+}
+
+/* Safe area insets for iOS browsers */
+.pb-safe {
+  padding-bottom: max(1.5rem, env(safe-area-inset-bottom, 1.5rem));
+}
+.pb-safe-lg {
+  padding-bottom: max(2rem, calc(env(safe-area-inset-bottom, 0px) + 2rem));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .liquid-metal {
+    animation: none;
+  }
+  .glass,
+  .btn-mechanical {
+    transition: none;
+  }
+}

@@ -42,7 +42,7 @@ const MixerPanel: React.FC<MixerPanelProps> = ({ isOpen, onClose, mixerState, se
   };
 
   return (
-    <div className="absolute bottom-24 left-1/2 transform -translate-x-1/2 w-full max-w-sm bg-[var(--bg-primary)] backdrop-blur-xl border border-[var(--border)] rounded-lg shadow-xl z-50 p-6 animate-fade-in">
+    <div className="absolute bottom-24 left-1/2 transform -translate-x-1/2 w-full max-w-sm surface-panel rounded-3xl z-50 p-6 animate-fade-in">
       <div className="flex justify-between items-center mb-6">
         <h3 className="font-light text-[var(--text-primary)] tracking-wider uppercase text-sm">Ambient Mixer</h3>
         <button onClick={onClose} className="text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors">

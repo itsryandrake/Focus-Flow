@@ -22,8 +22,20 @@ Creates iOS-compatible app icons (apple-touch-icon.png) for Ential apps.
 | Conversio | ArrowLeftRight | Two arrows pointing left and right |
 | Invoicible | FileText | Document with lines |
 | Read-Fast | Zap | Lightning bolt |
-| FocusMode | Headphones | Over-ear headphones |
+| FocusMode | Headphones (ember-tile favicon family — see "FocusMode (Liquid Glass)" below) | Lucide Headphones |
 | Don't Be Late | AlarmClock | Clock with alarm bells |
+
+## FocusMode (Liquid Glass) — current pipeline
+
+FocusMode no longer uses the PIL-drawn orange/white icon OR the molten
+headphones render. Its app mark is the shared Ential **ember-tile + white
+Lucide Headphones** favicon family: `public/favicon.svg` (64 viewBox, rx=14
+molten-gradient tile, radial gloss, stroke-2 white glyph) is the source of
+truth, rasterized via `qlmanage` (ImageMagick cannot rasterize the SVG) into
+`favicon-32.png`, `favicon-16.png`, `favicon.ico`, `icon-192.png`,
+`icon-512.png`, and `apple-touch-icon.png` (180×180, **full-square rx=0, RGB
+no alpha**). `og-image.png` (1200×630, molten render on ink) stays. Theme
+colour is ember `#F74603`, not `#f97316`. See `design.md` §6 and §8.
 
 ## Python Generation Script
 

@@ -17,7 +17,7 @@
     <meta property="og:url" content="https://focusmode.cc/" />
     <meta property="og:title" content="FocusMode - Music for Focus & Productivity" />
     <meta property="og:description" content="Curated music for focus, meditation, and productivity. Boost concentration with scientifically-designed soundscapes." />
-    <meta property="og:image" content="https://focusmode.cc/apple-touch-icon.png" />
+    <meta property="og:image" content="https://focusmode.cc/og-image.png" />
     <meta property="og:site_name" content="FocusMode" />
 
     <!-- Twitter -->
@@ -25,16 +25,17 @@
     <meta name="twitter:url" content="https://focusmode.cc/" />
     <meta name="twitter:title" content="FocusMode - Focus Music App" />
     <meta name="twitter:description" content="Curated music for focus, meditation, and productivity. Free focus music app." />
-    <meta name="twitter:image" content="https://focusmode.cc/apple-touch-icon.png" />
+    <meta name="twitter:image" content="https://focusmode.cc/og-image.png" />
 
     <!-- Theme Color -->
-    <meta name="theme-color" content="#EA5B0C" />
-    <meta name="msapplication-TileColor" content="#EA5B0C" />
+    <meta name="theme-color" content="#F74603" />
+    <meta name="msapplication-TileColor" content="#F74603" />
 
     <!-- App Icons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <link rel="icon" type="image/svg+xml" href="/apple-touch-icon.svg" />
-    <link rel="icon" type="image/png" href="/apple-touch-icon.png" />
 
     <!-- Structured Data -->
     <script type="application/ld+json">
@@ -59,132 +60,11 @@
     }
     </script>
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        darkMode: 'class',
-        theme: {
-          extend: {
-            fontFamily: {
-              sans: ['Inter', 'sans-serif'],
-              mono: ['JetBrains Mono', 'monospace'],
-            },
-            animation: {
-              'blob': 'blob 10s infinite',
-              'fade-in': 'fadeIn 0.5s ease-out',
-            },
-            keyframes: {
-              blob: {
-                '0%': { transform: 'translate(0px, 0px) scale(1)' },
-                '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
-                '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
-                '100%': { transform: 'translate(0px, 0px) scale(1)' },
-              },
-              fadeIn: {
-                '0%': { opacity: '0' },
-                '100%': { opacity: '1' },
-              }
-            }
-          }
-        }
-      }
-    </script>
-    <style>
-      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
-
-      /* Braun-inspired CSS Variables */
-      :root {
-        --bg-primary: #F4F4F0;
-        --bg-secondary: #FFFFFF;
-        --text-primary: #1A1A1A;
-        --text-secondary: #6B6B6B;
-        --accent: #EA5B0C;
-        --accent-hover: #D94E00;
-        --border: #DCDCDC;
-        --chrome: #A1A1AA;
-      }
-
-      .dark {
-        --bg-primary: #1A1A1A;
-        --bg-secondary: #2A2A2A;
-        --text-primary: #F4F4F0;
-        --text-secondary: #9A9A9A;
-        --accent: #EA5B0C;
-        --accent-hover: #FF6B1A;
-        --border: #3A3A3A;
-        --chrome: #71717A;
-      }
-
-      body {
-        font-family: 'Inter', sans-serif;
-      }
-      .font-mono {
-        font-family: 'JetBrains Mono', monospace;
-      }
-
-      /* Mechanical Button Styles */
-      .btn-mechanical {
-        background-color: var(--bg-secondary);
-        border: 1px solid var(--border);
-        transition: all 0.15s ease;
-      }
-      .btn-mechanical:hover {
-        border-color: var(--accent);
-        box-shadow: 0 0 0 1px var(--accent);
-      }
-      .btn-mechanical:active {
-        transform: scale(0.98);
-      }
-      .btn-mechanical-active {
-        background-color: var(--accent);
-        color: white;
-        border: 1px solid var(--accent);
-      }
-      .btn-mechanical-active:hover {
-        background-color: var(--accent-hover);
-        border-color: var(--accent-hover);
-      }
-
-      /* Custom scrollbar */
-      ::-webkit-scrollbar {
-        width: 6px;
-        height: 6px;
-        background: transparent;
-      }
-      ::-webkit-scrollbar-track {
-        background: transparent;
-      }
-      ::-webkit-scrollbar-thumb {
-        background: var(--border);
-        border-radius: 10px;
-      }
-      ::-webkit-scrollbar-thumb:hover {
-        background: var(--chrome);
-      }
-
-      /* Safe area insets for iOS browsers */
-      .pb-safe {
-        padding-bottom: max(1.5rem, env(safe-area-inset-bottom, 1.5rem));
-      }
-      .pb-safe-lg {
-        padding-bottom: max(2rem, calc(env(safe-area-inset-bottom, 0px) + 2rem));
-      }
-    </style>
-    <script type="importmap">
-{
-  "imports": {
-    "lucide-react": "https://esm.sh/lucide-react@0.468.0?external=react",
-    "react-dom/client": "https://esm.sh/react-dom@19.0.0/client",
-    "react-dom": "https://esm.sh/react-dom@19.0.0",
-    "react": "https://esm.sh/react@19.0.0",
-    "@google/generative-ai": "https://esm.sh/@google/generative-ai@0.24.0",
-    "react-dom/": "https://esm.sh/react-dom@19.0.0/",
-    "react/": "https://esm.sh/react@19.0.0/"
-  }
-}
-</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
   </head>
-  <body class="bg-[var(--bg-primary)] text-[var(--text-primary)] antialiased selection:bg-[#EA5B0C]/20 selection:text-[#EA5B0C] transition-colors">
+  <body class="bg-[var(--bg-primary)] text-[var(--text-primary)] antialiased selection:bg-[#F74603]/20 selection:text-[#F74603] transition-colors">
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
   </body>

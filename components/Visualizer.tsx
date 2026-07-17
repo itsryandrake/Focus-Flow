@@ -12,8 +12,11 @@ const Visualizer: React.FC<VisualizerProps> = ({ mode, isPlaying }) => {
       {/* Solid background using brand colors */}
       <div className="absolute inset-0 bg-[var(--bg-primary)] z-0"></div>
 
-      {/* Subtle texture overlay */}
-      <div className="absolute inset-0 opacity-[0.02] bg-[radial-gradient(circle_at_1px_1px,_var(--chrome)_1px,_transparent_0)] bg-[length:20px_20px]"></div>
+      {/* Ambient ember blobs — ≤7% tint, breathe a little more while playing */}
+      <div className="ambient" aria-hidden="true">
+        <span className={`w-[36rem] h-[36rem] -top-48 -left-40 bg-[#F74603]/[0.07] transition-opacity duration-1000 ${isPlaying ? 'opacity-70' : 'opacity-40'}`}></span>
+        <span className={`w-[30rem] h-[30rem] -bottom-32 -right-32 bg-[#F74603]/[0.05] transition-opacity duration-1000 ${isPlaying ? 'opacity-70' : 'opacity-40'}`}></span>
+      </div>
     </div>
   );
 };

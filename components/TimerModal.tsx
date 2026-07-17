@@ -39,7 +39,7 @@ const TimerModal: React.FC<TimerModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm" onClick={onClose}>
-      <div className="w-full max-w-md bg-[var(--bg-primary)] rounded-lg border border-[var(--border)] p-6 shadow-xl transform transition-all" onClick={e => e.stopPropagation()}>
+      <div className="w-full max-w-md surface-panel rounded-3xl p-6 transform transition-all" onClick={e => e.stopPropagation()}>
         <h2 className="text-center text-xl font-light text-[var(--text-primary)] mb-8">Timer Settings</h2>
 
         {/* Mode Selectors */}

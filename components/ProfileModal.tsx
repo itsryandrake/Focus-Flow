@@ -68,7 +68,7 @@ const ProfileModal: React.FC<ProfileModalProps> = ({ isOpen, onClose, onUpdate, 
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm" onClick={onClose}>
-      <div className="w-full max-w-md bg-[var(--bg-primary)] rounded-lg border border-[var(--border)] p-8 shadow-xl relative max-h-[90vh] overflow-hidden flex flex-col" onClick={e => e.stopPropagation()}>
+      <div className="w-full max-w-md surface-panel rounded-3xl p-8 relative max-h-[90vh] overflow-hidden flex flex-col" onClick={e => e.stopPropagation()}>
         <button
           onClick={onClose}
           className="absolute top-4 right-4 text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors"
